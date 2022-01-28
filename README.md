@@ -1,0 +1,2 @@
+# mc-tabs
+Tabs component
