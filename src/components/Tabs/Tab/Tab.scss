@@ -1,0 +1,34 @@
+@import "../../../helpers/constants.scss";
+
+.tab {
+  color: $grey;
+  line-height: 1;
+  margin: 0 20px;
+  padding: 16px 8px;
+  position: relative;
+  top: 1px;
+  white-space: nowrap;
+  transition: color 0.3s;
+
+  &:hover {
+    color: $aqua-dark;
+    cursor: pointer;
+  }
+
+  &:first-of-type {
+    margin-left: 0;
+  }
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+}
+
+.tab--active {
+  border-bottom: 2px solid $aqua;
+  color: $aqua;
+
+  &:hover {
+    color: $aqua;
+  }
+}

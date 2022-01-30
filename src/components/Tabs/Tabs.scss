@@ -1,0 +1,19 @@
+@import "../../helpers/constants.scss";
+.tabs-wrapper {
+  border: 2px solid transparent;
+
+  &:focus,
+  :focus-visible {
+    outline: none;
+    border: 2px solid $aqua;
+  }
+}
+
+.tabs {
+  border-bottom: 1px solid $grey-light;
+  display: flex;
+  font-size: 16px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
