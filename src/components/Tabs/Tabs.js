@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import whatInput from "what-input";
 import Tab from "./Tab";
 import Panel from "./Panel";
 import "./Tabs.scss";

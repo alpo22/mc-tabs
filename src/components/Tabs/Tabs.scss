@@ -1,10 +1,15 @@
 @import "../../helpers/constants.scss";
+
 .tabs-wrapper {
   border: 2px solid transparent;
+}
 
-  &:focus,
-  :focus-visible {
-    outline: none;
+.tabs-wrapper:focus {
+  outline: none;
+}
+
+[data-whatinput="keyboard"] {
+  .tabs-wrapper:focus {
     border: 2px solid $aqua;
   }
 }

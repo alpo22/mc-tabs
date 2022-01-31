@@ -3,6 +3,8 @@
 Simple controlled tabs component.
 You can change the tabs by clicking with your mouse, or focusing on the tabs and pressing the left/right arrow keys.
 
+![Screen Shot 2022-01-31 at 12 31 19 PM](https://user-images.githubusercontent.com/32404661/151868389-d39c71a3-c13a-4b8d-a71d-b432b2d14c80.png)
+
 # Running app
 
 `npm start`
