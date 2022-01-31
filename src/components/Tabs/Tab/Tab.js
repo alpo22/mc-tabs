@@ -8,7 +8,7 @@ import "./Tab.scss";
 
 function getTitle(children) {
   if (Array.isArray(children)) {
-    return children.filter(childComponent => childComponent.type.displayName === Tab.Title.displayName)[0];
+    return children.filter((childComponent) => childComponent.type.displayName === Tab.Title.displayName)[0];
   }
 
   if (typeof children === "object" && children.type.displayName === Tab.Title.displayName) {
@@ -46,13 +46,14 @@ Tab.Content = Content;
 
 Tab.propTypes = {
   children: PropTypes.node.isRequired,
-  isActive: PropTypes.bool,
-  onChange: PropTypes.func.isRequired,
+  isActive: PropTypes.bool, // injected automatically
+  onChange: PropTypes.func, // injected automatically
   onClick: PropTypes.func,
-  tabKey: PropTypes.string.isRequired
+  tabKey: PropTypes.string.isRequired,
 };
 
 Tab.defaultProps = {
   isActive: false,
-  onClick: null
+  onChange: null,
+  onClick: null,
 };

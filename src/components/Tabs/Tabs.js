@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Tab from "./Tab";
-import MainContent from "./MainContent";
+import Panel from "./Panel";
 import "./Tabs.scss";
 
 export default function Tabs({ activeTabKey, children, onChange }) {
-  const allTabKeys = React.Children.map(children, child => child.props.tabKey);
+  const allTabKeys = React.Children.map(children, (child) => child.props.tabKey);
   const activeTabKeyIndex = allTabKeys.indexOf(activeTabKey);
 
   function isTabComponentActive(TabComponent) {
@@ -15,8 +15,8 @@ export default function Tabs({ activeTabKey, children, onChange }) {
   function getActiveTabContents() {
     try {
       return React.Children.toArray(children)
-        .find(TabComponent => isTabComponentActive(TabComponent))
-        .props.children.find(childComponent => childComponent.type.displayName === Tab.Content.displayName);
+        .find((TabComponent) => isTabComponentActive(TabComponent))
+        .props.children.find((childComponent) => childComponent.type.displayName === Tab.Content.displayName);
     } catch (e) {
       return null;
     }
@@ -42,7 +42,7 @@ export default function Tabs({ activeTabKey, children, onChange }) {
     <>
       <div
         className="tabs-wrapper"
-        onKeyDown={e => {
+        onKeyDown={(e) => {
           switch (e.key) {
             case "ArrowLeft":
               goToPreviousTab();
@@ -57,18 +57,18 @@ export default function Tabs({ activeTabKey, children, onChange }) {
               }
           }
         }}
-        tabIndex={1}
+        tabIndex={0}
       >
         <ul className="tabs" role="tablist">
-          {React.Children.map(children, TabComponent =>
+          {React.Children.map(children, (TabComponent) =>
             React.cloneElement(TabComponent, {
               isActive: isTabComponentActive(TabComponent),
-              onChange
+              onChange,
             })
           )}
         </ul>
       </div>
-      <MainContent>{getActiveTabContents()}</MainContent>
+      <Panel>{getActiveTabContents()}</Panel>
     </>
   );
 }
@@ -76,7 +76,7 @@ export default function Tabs({ activeTabKey, children, onChange }) {
 Tabs.propTypes = {
   activeTabKey: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
 };
 
 export { Tab };

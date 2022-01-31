@@ -1,13 +1,18 @@
 # mc-tabs
+
 Simple controlled tabs component.
 You can change the tabs by clicking with your mouse, or focusing on the tabs and pressing the left/right arrow keys.
 
-
 # Running app
+
 `npm start`
 
+# Running tests
+
+`npm test` (also tests a11y)
 
 # Using component
+
 ```
 <Tabs activeTabKey={activeTabKey} onChange={handleChangeActiveTabKey}>
   <Tab tabKey="one">
@@ -24,22 +29,20 @@ You can change the tabs by clicking with your mouse, or focusing on the tabs and
 </Tabs>
 ```
 
-
 # Props
 
 ### Tabs
 
-| Prop          | Type    | Required?  | Description                                                                    |
-| ------------- | ------- | ---------- | ------------------------------------------------------------------------------ |
-| activeTabKey  | string  | Yes        | The unique key of the currently active tab.                                    |
-| onChange      | func    | Yes        | The function to call when they change tabs (by clicking or using arrow keys).  |
+| Prop         | Type   | Required? | Description                                                                   |
+| ------------ | ------ | --------- | ----------------------------------------------------------------------------- |
+| activeTabKey | string | Yes       | The unique key of the currently active tab.                                   |
+| onChange     | func   | Yes       | The function to call when they change tabs (by clicking or using arrow keys). |
 
 ### Tabs.Tab
 
-| Prop          | Type    | Required?  | Description                                                                    |
-| ------------- | ------- | ---------- | ------------------------------------------------------------------------------ |
-| tabKey        | string  | Yes        | The unique key of this tab.                                                    |
-| children      | nodes   | Yes        | A `Tab.Title` component should always be included.                             |
-|               |         |            | A `Tab.Content` component should be included unless using the `onClick` prop.  |
-| onClick       | func    | No         | A function to call when they click on this tab (using the mouse), or press `enter` using the keyboard. |
-
+| Prop     | Type   | Required? | Description                                                                                            |
+| -------- | ------ | --------- | ------------------------------------------------------------------------------------------------------ |
+| tabKey   | string | Yes       | The unique key of this tab.                                                                            |
+| children | nodes  | Yes       | A `Tab.Title` component should always be included.                                                     |
+|          |        |           | A `Tab.Content` component should be included unless using the `onClick` prop.                          |
+| onClick  | func   | No        | A function to call when they click on this tab (using the mouse), or press `enter` using the keyboard. |
