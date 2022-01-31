@@ -1,7 +1,11 @@
-.tabs__main {
+.tabs__panel {
   margin: 24px 0;
   opacity: 0;
-  animation: fadeIn ease-in-out 0.3s forwards;
+  animation: fadeIn ease-in 0.2s forwards;
+
+  &.tabs__panel--fade-out {
+    animation: fadeOut ease-out 0.2s forwards;
+  }
 }
 
 @keyframes fadeIn {
@@ -10,5 +14,14 @@
   }
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }

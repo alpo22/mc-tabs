@@ -5,6 +5,8 @@ import Panel from "./Panel";
 import "./Tabs.scss";
 
 export default function Tabs({ activeTabKey, children, onChange }) {
+  const [isFadingOut, setIsFadingOut] = React.useState(false);
+
   const allTabKeys = React.Children.map(children, (child) => child.props.tabKey);
   const activeTabKeyIndex = allTabKeys.indexOf(activeTabKey);
 
@@ -22,12 +24,21 @@ export default function Tabs({ activeTabKey, children, onChange }) {
     }
   }
 
+  function animateAndChangeTab(newTabKey) {
+    setIsFadingOut(true); // takes 200ms
+
+    setTimeout(() => {
+      setIsFadingOut(false);
+      onChange(newTabKey);
+    }, 200);
+  }
+
   function goToPreviousTab() {
     if (activeTabKeyIndex === 0) {
       return;
     }
 
-    onChange(allTabKeys[activeTabKeyIndex - 1]);
+    animateAndChangeTab(allTabKeys[activeTabKeyIndex - 1]);
   }
 
   function goToNextTab() {
@@ -35,7 +46,7 @@ export default function Tabs({ activeTabKey, children, onChange }) {
       return;
     }
 
-    onChange(allTabKeys[activeTabKeyIndex + 1]);
+    animateAndChangeTab(allTabKeys[activeTabKeyIndex + 1]);
   }
 
   return (
@@ -63,12 +74,12 @@ export default function Tabs({ activeTabKey, children, onChange }) {
           {React.Children.map(children, (TabComponent) =>
             React.cloneElement(TabComponent, {
               isActive: isTabComponentActive(TabComponent),
-              onChange,
+              onChange: animateAndChangeTab,
             })
           )}
         </ul>
       </div>
-      <Panel>{getActiveTabContents()}</Panel>
+      <Panel isFadingOut={isFadingOut}>{getActiveTabContents()}</Panel>
     </>
   );
 }
