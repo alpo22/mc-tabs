@@ -5,13 +5,20 @@ import Tab from "./Tab";
 import Panel from "./Panel";
 import "./Tabs.scss";
 
-export default function Tabs({ activeTabKey, children, onChange }) {
+export default function Tabs({ activeTabKey, children, defaultActiveTabKey, onChange }) {
+  const [uncontrolledActiveTabKey, setuncontrolledActiveTabKey] = React.useState(defaultActiveTabKey);
+  const isUncontrolled = defaultActiveTabKey;
+
   const [isFadingOut, setIsFadingOut] = React.useState(false);
 
   const allTabKeys = React.Children.map(children, (child) => child.props.tabKey);
   const activeTabKeyIndex = allTabKeys.indexOf(activeTabKey);
 
   function isTabComponentActive(TabComponent) {
+    if (isUncontrolled) {
+      return TabComponent.props.tabKey === uncontrolledActiveTabKey;
+    }
+
     return TabComponent.props.tabKey === activeTabKey;
   }
 
@@ -30,7 +37,11 @@ export default function Tabs({ activeTabKey, children, onChange }) {
 
     setTimeout(() => {
       setIsFadingOut(false);
-      onChange(newTabKey);
+      if (isUncontrolled) {
+        setuncontrolledActiveTabKey(newTabKey);
+      } else {
+        onChange(newTabKey);
+      }
     }, 200);
   }
 
@@ -86,9 +97,16 @@ export default function Tabs({ activeTabKey, children, onChange }) {
 }
 
 Tabs.propTypes = {
-  activeTabKey: PropTypes.string.isRequired,
+  activeTabKey: PropTypes.string,
+  defaultActiveTabKey: PropTypes.string,
   children: PropTypes.node.isRequired,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
+};
+
+Tabs.defaultProps = {
+  activeTabKey: "",
+  defaultActiveTabKey: "",
+  onChange: () => {},
 };
 
 export { Tab };

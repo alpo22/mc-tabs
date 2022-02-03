@@ -11,7 +11,7 @@ function App() {
 
   return (
     <div className="app">
-      <Tabs activeTabKey={activeTabKey} onChange={handleChangeActiveTabKey}>
+      <Tabs defaultActiveTabKey={activeTabKey}>
         <Tab tabKey="oak">
           <Tab.Title>Oakland</Tab.Title>
           <Tab.Content>
